@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Email Verification</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+    .status {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Email Verification</h1>
+  <div class="status" id="status">Verifying...</div>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    if (!token) {
+      statusEl.textContent = "Invalid verification link.";
+    } else {
+      fetch(`https://your-api.com/api/verify?token=${token}`)
+        .then(res => res.text())
+        .then(msg => statusEl.textContent = msg)
+        .catch(err => {
+          console.error(err);
+          statusEl.textContent = "Verification failed.";
+        });
+    }
+  </script>
+</body>
+</html>
