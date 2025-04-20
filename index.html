@@ -27,7 +27,7 @@
     if (!token) {
       statusEl.textContent = "Invalid verification link.";
     } else {
-      fetch(`https://your-api.com/api/verify?token=${token}`)
+      fetch(`https://b289-73-90-200-173.ngrok-free.app/api/verify?token=${token}`)
         .then(res => res.text())
         .then(msg => statusEl.textContent = msg)
         .catch(err => {
