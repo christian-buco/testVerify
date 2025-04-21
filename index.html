@@ -28,8 +28,8 @@
       statusEl.textContent = "Invalid verification link.";
     } else {
       fetch(`https://b289-73-90-200-173.ngrok-free.app/api/signup/verify?token=${token}`)
-        .then(res => res.text())
-        .then(msg => statusEl.textContent = msg)
+        .then(res => res.json())
+        .then(data => statusEl.textContent = data.message)
         .catch(err => {
           console.error(err);
           statusEl.textContent = "Verification failed.";
