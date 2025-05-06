@@ -3,52 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Email Verification</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 2rem;
-      text-align: center;
-    }
-    .status {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h1>Email Verification</h1>
   <div class="status" id="status">Verifying...</div>
 
-  <script>
-    const statusEl = document.getElementById('status');
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
-
-    if (!token) {
-      statusEl.textContent = "Invalid verification link.";
-    } else {
-      fetch(` https://ce4b-73-90-200-173.ngrok-free.app/api/signup/verify?token=${token}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true',
-        },
-      })
-        .then(res => {
-        if (!res.ok) {
-          throw new Error("Verification failed");
-        }
-        return res.json();
-      })
-      .then(data => {
-        console.log(data);
-        statusEl.textContent = data.message || "Email successfully verified!";
-      })
-      .catch(err => {
-        console.error(err);
-        statusEl.textContent = "Verification failed or link expired.";
-      });
-    }
-  </script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
