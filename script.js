@@ -32,5 +32,3 @@ async function verifyEmail() {
 window.addEventListener('load', () => {
   verifyEmail();
 });
-
-module.exports = { verifyEmail };
